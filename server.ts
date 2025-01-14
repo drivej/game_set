@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import path from 'path';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3201;
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'dist')));
