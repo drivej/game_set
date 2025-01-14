@@ -8,7 +8,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development",
-    "start": "node index.js"
+    "start": "ts-node server.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
