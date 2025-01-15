@@ -116,9 +116,9 @@ const SetGameUI = () => {
       }
 
       // get card available to hint
-      const selectedIds = selectedCards.map(c => c.id);
+      const selectedIds = selectedCards.map((c) => c.id);
       // flatten valid cards and remove selected cards
-      const ids = _validSets.reduce<string[]>((s, validSet) => [...s, ...validSet.map((c) => c.id)], []).filter(id => !selectedIds.includes(id));
+      const ids = _validSets.reduce<string[]>((s, validSet) => [...s, ...validSet.map((c) => c.id)], []).filter((id) => !selectedIds.includes(id));
       // get random card
       const id = ids[Math.floor(Math.random() * ids.length)];
 
@@ -197,41 +197,37 @@ const SetGameUI = () => {
 
   return (
     <div className='d-flex flex-column' style={{ minHeight: '100vh' }}>
-      <div className='p-4 flex-shrink-1' style={{ display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* <div>Sets: {totalSets.length}</div> */}
-        {/* <div>Fails: {totalFails.length}</div> */}
-
-        {/* <div>Sets: {showValidSets ? validSets.length : '?'}</div> */}
-        {/* <div>In Deck: {inDeck.length}</div> */}
-        {/* <div>In Play: {inPlay.length}</div> */}
+      <div className='Sp-4 flex-shrink-1 bg-secondary text-light' style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr' }}>
         <div className='d-flex gap-1'>
-          {/* <button className='btn btn-primary' onClick={() => deck.deal(3)}>
-            Deal
-          </button> */}
-          <button className='btn btn-secondary' onClick={() => deck.shuffle()}>
-            <ShuffleIcon />
+          <button className='btn btn-link text-light text-decoration-none' onClick={() => setShowValidSets((s) => !s)}>
+            Sets: {validSets.length}
           </button>
-
-          <button className='btn btn-primary' onClick={() => setShowValidSets((s) => !s)}>
-            Sets: {showValidSets ? validSets.length : '?'}
-          </button>
-          <button className='btn btn-primary' onClick={() => hint()}>
+          <button className='btn btn-link text-light text-decoration-none' onClick={() => hint()}>
             Hint
           </button>
-          <button className='btn btn-primary' onClick={() => cheat()}>
+          <button className='btn btn-link text-light text-decoration-none' onClick={() => cheat()}>
             Cheat
           </button>
-          <button className='btn btn-primary' onClick={() => reset()}>
-            Reset
-          </button>
-          <button className='btn btn-primary d-none' onClick={() => clear()}>
+
+          <button className='btn btn-link text-light text-decoration-none d-none' onClick={() => clear()}>
             Clear
           </button>
         </div>
 
         <div>
-          {isComplete ? 'Finished in ' : ''}
-          <span style={{ minWidth: '5ch', display: 'inline-block' }}>{formatDuration(duration)}</span>
+          <button className='btn btn-link text-light text-decoration-none' onClick={() => deck.shuffle()}>
+            <ShuffleIcon />
+          </button>
+        </div>
+
+        <div>
+          <div>
+            {isComplete ? 'Finished in ' : ''}
+            <span style={{ minWidth: '5ch', display: 'inline-block' }}>{formatDuration(duration)}</span>
+          </div>
+          <button className='btn btn-link text-light text-decoration-none' onClick={() => reset()}>
+            Reset
+          </button>
         </div>
       </div>
       <div className='flex-grow-1' style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 20, width: '100%', height: '100%' }}>
